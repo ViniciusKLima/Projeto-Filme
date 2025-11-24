@@ -12,37 +12,43 @@ class Filme
     #[ORM\Column(type: "integer")]
     private int $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 255)]
     private string $nome;
 
     #[ORM\Column(type: "text")]
     private string $sinopse;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 255)]
     private string $capaPrincipal;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 255)]
     private string $capaFundo;
 
     #[ORM\Column(type: "integer")]
     private int $anoLancamento;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 255)]
     private string $diretor;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 200)]
+    private string $elenco;
+
+    #[ORM\Column(type: "string", length: 100)]
     private string $genero;
 
     #[ORM\Column(type: "float")]
     private float $nota;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 500)]
     private string $trailer;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", length: 100)]
     private string $streaming;
 
+    // =======================
     // GETTERS e SETTERS
+    // =======================
+    
     public function getId(): int { return $this->id; }
 
     public function getNome(): string { return $this->nome; }
@@ -62,6 +68,9 @@ class Filme
 
     public function getDiretor(): string { return $this->diretor; }
     public function setDiretor(string $diretor) { $this->diretor = $diretor; }
+
+    public function getElenco(): string { return $this->elenco; }
+    public function setElenco(string $elenco) { $this->elenco = $elenco; }
 
     public function getGenero(): string { return $this->genero; }
     public function setGenero(string $genero) { $this->genero = $genero; }
