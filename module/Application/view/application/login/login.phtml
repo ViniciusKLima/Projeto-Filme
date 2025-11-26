@@ -1,0 +1,45 @@
+<?php
+$this->headTitle('Login');
+?>
+
+<!-- Link explícito para o CSS da página (funciona mesmo sem layout) -->
+<link rel="stylesheet" href="<?= $this->basePath('/css/login.css') ?>">
+
+<img src="<?= $this->basePath('/img/BackgroundLogin.jpg') ?>" alt="">
+
+<section class="login">
+    <h1 class="tt">LocMovies</h1>
+
+    <form id="loginForm" autocomplete="off" action="<?= $this->url('auth', ['action' => 'authenticate']) ?>" method="post">
+
+        <div class="email">
+            <label for="email" class="tt-email">Email</label>
+            <input autocomplete="off" type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="senha">
+            <label for="senha" class="tt-senha">Senha</label>
+            <div class="password-wrapper">
+                <input class="password-input" autocomplete="current-password" type="password" id="senha" name="senha" placeholder="Senha" required>
+                <button type="button" class="toggle-password" aria-label="Mostrar senha" aria-pressed="false">
+                    <!-- Eye SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <a href="#" class="esqueceuSenha">Esqueceu a senha?</a>
+        </div>
+
+        <button type="submit" class="btn-entrar">Entrar</button>
+
+        <p class="txt-cadastro">
+            Não tem conta?
+            <a href="<?= $this->url('auth', ['action' => 'cadastro']) ?>" class="link-cadastro">
+                Criar conta
+            </a>
+        </p>
+
+    </form>
+</section>

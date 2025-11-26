@@ -156,6 +156,15 @@ class DetalhesFilmeController extends AbstractActionController
 
     public function detalhesAction()
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Protege rota: exige usuário logado
+        if (empty($_SESSION['user'])) {
+            return $this->redirect()->toRoute('auth', ['action' => 'login']);
+        }
+
         $id = $this->params()->fromQuery('id', null);
         if (!$id) return $this->redirect()->toRoute('home');
 

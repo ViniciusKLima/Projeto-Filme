@@ -1,0 +1,54 @@
+<?php
+$this->headTitle('Cadastro - LocMovies');
+?>
+
+<!-- Link explícito para o CSS da página (funciona mesmo sem layout) -->
+<link rel="stylesheet" href="<?= $this->basePath('/css/cadastro.css') ?>">
+
+<div class="background">
+    <img src="<?= $this->basePath('/img/BackgroundLogin.jpg') ?>" alt="Background">
+</div>
+
+<section class="cadastro">
+    <h1 class="tt">LocMovies</h1>
+
+    <?php if (!empty($this->error)): ?>
+        <div class="form-error" style="color:#f8d7da;background:#5a1a1a;padding:10px;border-radius:4px;margin-bottom:12px;">
+            <?= $this->escapeHtml($this->error) ?>
+        </div>
+    <?php endif; ?>
+
+    <form id="cadastroForm" autocomplete="off" method="post" action="<?= $this->url('auth', ['action' => 'register']) ?>">
+        <div class="usuario">
+            <label for="usuario" class="tt-usuario">Nome</label>
+            <input type="text" id="usuario" name="usuario" placeholder="Seu nome" required>
+        </div>
+
+        <div class="email">
+            <label for="email" class="tt-email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="senha">
+            <label for="senha" class="tt-senha">Senha</label>
+            <div class="password-wrapper">
+                <input class="password-input" autocomplete="new-password" type="password" id="senha" name="senha" placeholder="Senha" required>
+                <button type="button" class="toggle-password" aria-label="Mostrar senha" aria-pressed="false">
+                    <!-- Eye SVG -->
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <a href="#" class="esqueceuSenha">Esqueceu a senha?</a>
+        </div>
+
+        <button type="submit" class="btn-cadastrar">Criar conta</button>
+        <div id="loginMessage" style="margin-top:10px;"></div>
+
+        <p class="txt-cadastro">
+            Já tem conta? <a href="<?= $this->url('auth', ['action' => 'login']) ?>" class="link-cadastro">Entrar</a>
+        </p>
+    </form>
+    </section>

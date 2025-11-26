@@ -1,5 +1,16 @@
 <header>
     <h1><a href="<?= $this->url('home') ?>">LocMovies</a></h1>
-    <!-- Linha de autenticação removida -->
-    <a href="#" class="btn-login">Entrar</a>
+    <?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (!empty($_SESSION['user'])): ?>
+        <div class="user-info">
+            <a href="#" class="user-name">Olá, <?= $this->escapeHtml($_SESSION['user']['nome']) ?></a>
+            <a href="<?= $this->url('auth', ['action' => 'logout']) ?>" class="btn-logout">Sair</a>
+        </div>
+    <?php else: ?>
+        <a href="<?= $this->url('auth', ['action' => 'login']) ?>" class="btn-login">Entrar</a>
+    <?php endif; ?>
 </header>
