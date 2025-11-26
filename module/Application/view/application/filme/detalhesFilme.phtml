@@ -1,0 +1,70 @@
+<?php
+$this->headTitle($filme['nome'] . ' - LocMovies');
+$this->headLink()->appendStylesheet($this->basePath('css/detalhesFilme.css'));
+?>
+
+<div class="capaFundo">
+    <img src="<?= $filme['capaFundo'] ?>" alt="<?= $filme['nome'] ?>" />
+</div>
+
+<div class="container">
+    <div class="coluna1">
+        <div class="boxCapa">
+            <img src="<?= $filme['capaPrincipal'] ?>" alt="<?= $filme['nome'] ?>" />
+        </div>
+        <div class="boxStreaming">
+            <div class="ondeAssitir">Onde Assistir:</div>
+            <div class="logoStreaming">
+                <?php if (!empty($streaming)): ?>
+                    <?php foreach ($streaming as $plataforma): ?>
+                        <a href="<?= $plataforma['url'] ?>" target="_blank">
+                            <img src="<?= $plataforma['logo'] ?>" alt="<?= $plataforma['nome'] ?>" />
+                        </a>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Não disponível</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="coluna2">
+        <div class="boxTitulo">
+            <h2 class="ttFilme"><?= $filme['nome'] ?></h2>
+        </div>
+        <div class="c2-linha2">
+            <div class="boxTexto">
+                <p class="sinopse"><?= $filme['sinopse'] ?></p>
+
+                <?php
+                $generos = is_array($filme['genero']) ? $filme['genero'] : [$filme['genero']];
+                $atores = is_array($filme['atoresPrincipais']) ? $filme['atoresPrincipais'] : array_map('trim', explode(',', $filme['atoresPrincipais']));
+                ?>
+
+                <p class="genero"><strong>Gênero: </strong><?= implode(', ', $generos) ?></p>
+                <p class="diretor"><strong>Diretor: </strong> <?= $filme['diretor'] ?></p>
+                <p class="atoresPrincipais"><strong>Atores Principais: </strong><?= implode(', ', $atores) ?></p>
+                <p class="anoLancamento"><strong>Ano de Lançamento: </strong><?= $filme['anoLancamento'] ?></p>
+                <p class="avaliacao"><strong>Avaliação: </strong>⭐<?= $filme['nota'] ?></p>
+            </div>
+
+            <div class="boxTrailerContainer">
+                <div class="boxTrailer">
+                    <iframe
+                        src="<?= $filme['trailer'] ?>"
+                        title="Trailer de <?= $filme['nome'] ?>"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+                <div class="botaoWhats">
+                    <a href="#" class="linkWhats">
+                        <img src="<?= $this->basePath('img/whats.png') ?>" alt="WhatsApp" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

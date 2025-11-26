@@ -1,0 +1,262 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #1e314a;
+  overflow-x: hidden;
+}
+
+.capaFundo {
+  position: absolute;
+  width: 100vw;
+  max-width: 1100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  top: 0;
+
+  img {
+  width: 100%;
+  filter: blur(0px);
+  -webkit-mask-image: 
+    linear-gradient(to bottom, black 40%, transparent 100%),
+    linear-gradient(to right, black 80%, transparent 100%),
+    linear-gradient(to left, black 80%, transparent 100%);
+  mask-image: 
+    linear-gradient(to bottom, black 40%, transparent 100%),
+    linear-gradient(to right, black 80%, transparent 100%),
+    linear-gradient(to left, black 80%, transparent 100%);
+  
+  -webkit-mask-composite: intersect;
+  mask-composite: intersect;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  }
+}
+
+header {
+  background-color: #1e314a00;
+  backdrop-filter: blur(10px);
+  height: 12vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 3vw 5vw;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  color: rgb(255, 153, 0);
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .perfil {
+    width: 50px;
+    height: 50px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  margin: 60vh 0 0 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 25% 75%; /* 2 colunas principais */
+  height: 100%;
+  width: 80vw;
+  gap: 10px;
+}
+
+/* Coluna 1 */
+.coluna1 {
+  display: grid;
+  grid-template-rows: auto;
+  gap: 10px;
+}
+
+.boxCapa {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+
+  img {
+    width: 100%;
+  }
+}
+
+.boxStreaming {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 5px;
+
+  .logoStreaming {
+    border-radius: 5px;
+    width: fit-content;
+    height: fit-content;
+    overflow: hidden;
+
+    img {
+      height: 50px;
+    }
+  }
+}
+
+/* Coluna 2 */
+.coluna2 {
+  display: grid;
+  grid-template-rows: 10% auto;
+  gap: 10px;
+}
+
+/* Primeira linha da Coluna 2 */
+.boxTitulo {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2rem;
+  color: white;
+
+  .ttFilme {
+    font-size: clamp(1.2rem, 2vw, 3rem);
+  }
+}
+
+/* Segunda linha da Coluna 2 dividida em 2 colunas */
+.c2-linha2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* divide em duas metades */
+  gap: 10px;
+}
+
+.boxTexto {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #9ca4af;
+
+  strong {
+    color: rgb(222, 224, 236);
+  }
+}
+
+.boxTrailer {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.boxTrailerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.botaoWhats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .linkWhats {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: auto;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8vh;
+  color: white;
+  margin-top: 40px;
+}
+
+@media (max-width: 800px) {
+  header {
+    height: 8vh;
+  }
+
+  main {
+    margin-top: 30vh;
+  }
+  .container {
+    grid-template-columns: 1fr;
+    width: 60vw;
+  }
+
+  /* Coluna 1 */
+  .coluna1 {
+    display: grid;
+  }
+
+  .boxStreaming {
+    display: none;
+  }
+
+  /* Coluna 2 */
+  .coluna2 {
+    display: grid;
+    grid-template-rows: 1fr;
+  }
+
+  .boxTitulo {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Segunda linha da Coluna 2 dividida em 2 colunas */
+  .c2-linha2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}

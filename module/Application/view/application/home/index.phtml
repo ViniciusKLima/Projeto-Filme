@@ -1,0 +1,24 @@
+<?php
+$this->headTitle('LocMovies - Catálogo de Filmes');
+$this->headLink()->appendStylesheet($this->basePath('/css/index.css'));
+?>
+
+<div class="container-catalogo">
+    <h2 class="titulo-secao">Destaques</h2>
+    <div class="grid-filmes">
+        <?php if (!empty($filmes)): ?>
+            <?php foreach ($filmes as $filme): ?>
+                <div class="card-filme" onclick="window.location.href='<?= $this->url('filme', ['action' => 'detalhes']) ?>?id=<?= $filme['id'] ?>'">
+                    <img src="<?= $this->escapeHtmlAttr($filme['capaPrincipal']) ?>" alt="<?= $this->escapeHtml($filme['nome']) ?>" />
+                    <div class="info-filme">
+                        <h3><?= $this->escapeHtml($filme['nome']) ?></h3>
+                        <p><?= $this->escapeHtml($filme['anoLancamento']) ?></p>
+                        <div class="nota-filme">⭐ <?= $this->escapeHtml($filme['nota']) ?></div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Nenhum filme cadastrado ainda.</p>
+        <?php endif; ?>
+    </div>
+</div>
