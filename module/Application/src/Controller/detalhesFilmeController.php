@@ -8,6 +8,19 @@ class DetalhesFilmeController extends AbstractActionController
 {
     private $filmes;
 
+    /**
+     * DetalhesFilmeController
+     *
+     * Controlador responsável por fornecer os dados de filmes e a action de
+     * detalhes. Neste projeto os filmes estão codificados no construtor (array)
+     * apenas para fins de demonstração. Em um projeto real os dados viriam do
+     * banco via EntityManager/Repository.
+     *
+     * A action `detalhesAction()` busca o filme pelo id e retorna um ViewModel.
+     * Nesta action também colocamos proteção que redireciona para login quando
+     * o usuário não está autenticado (ideal: usar um plugin de autenticação).
+     */
+
     public function __construct()
     {
         $this->filmes = [

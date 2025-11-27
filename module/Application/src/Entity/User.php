@@ -7,6 +7,18 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'usuarios')]
 class User
 {
+    /**
+     * Entidade User (mapeada para a tabela `usuarios`)
+     *
+     * Campos principais:
+     * - id, nome, email, senha, tipoConta
+     * - rememberToken: token opcional para persistência do login (remember-me)
+     *
+     * Observações:
+     * - As senhas são armazenadas usando password_hash() no momento do cadastro.
+     * - Em produção é recomendado armazenar apenas o HASH do remember token
+     *   (ex.: hash('sha256', $token)) em vez do token em texto puro.
+     */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

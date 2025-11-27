@@ -40,6 +40,16 @@ return [
                     ],
                 ],
             ],
+            'filmes' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/adm',
+                    'defaults' => [
+                        'controller' => Controller\FilmesController::class,
+                        'action' => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
 

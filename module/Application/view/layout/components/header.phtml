@@ -1,16 +1,65 @@
-<header>
-    <h1><a href="<?= $this->url('home') ?>">LocMovies</a></h1>
-    <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+<!-- Header component
+     - Exibe logo e ações de usuário
+     - Adiciona classes variantes: .header--home (exibe subtítulo) e
+       .header--detail (exibe seta de volta)
+-->
 
-    if (!empty($_SESSION['user'])): ?>
-        <div class="user-info">
-            <a href="#" class="user-name">Olá, <?= $this->escapeHtml($_SESSION['user']['nome']) ?></a>
-            <a href="<?= $this->url('auth', ['action' => 'logout']) ?>" class="btn-logout">Sair</a>
-        </div>
-    <?php else: ?>
-        <a href="<?= $this->url('auth', ['action' => 'login']) ?>" class="btn-login">Entrar</a>
+<link rel="stylesheet" href="<?= $this->basePath('/css/header.css') ?>">
+<link rel="stylesheet" href="<?= $this->basePath('/css/modal.css') ?>">
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Detecta a action atual sem depender do view helper "params", que pode não
+// estar registrado quando o header é renderizado via partial. Usamos o
+// REQUEST_URI como fallback prático para aplicar variantes do header.
+$action = '';
+try {
+    if (!empty($_SERVER['REQUEST_URI'])) {
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        if (preg_match('#/detalhes#', $uri)) {
+            $action = 'detalhes';
+        } elseif ($uri === '/' || $uri === '' || preg_match('#(/index$|/home$)#', $uri)) {
+            $action = 'index';
+        }
+    }
+} catch (\Throwable $e) {
+    $action = '';
+}
+
+$headerClass = 'app-header';
+if ($action === 'index') { $headerClass .= ' header--home'; }
+if ($action === 'detalhes') { $headerClass .= ' header--detail'; }
+?>
+
+<header class="<?= $headerClass ?>">
+    <?php if ($action === 'detalhes'): ?>
+        <a href="<?= $this->url('home') ?>" class="back-arrow" aria-label="Voltar">&#8592;</a>
     <?php endif; ?>
+
+    <div class="brand">
+        <a class="logo" href="<?= $this->url('home') ?>">LocMovies</a>
+        <?php if ($action === 'index'): ?>
+            <div class="subtitle">Alugue seus filmes e viva grandes histórias</div>
+        <?php endif; ?>
+    </div>
+
+    <div class="user-actions">
+        <?php if (!empty($_SESSION['user'])): ?>
+            <div class="user-info">
+                <a href="#" class="user-name"><?= $this->escapeHtml($_SESSION['user']['nome']) ?></a>
+                <a href="<?= $this->url('auth', ['action' => 'logout']) ?>" class="btn-logout">Sair</a>
+            </div>
+        <?php else: ?>
+            <a href="<?= $this->url('auth', ['action' => 'login']) ?>" class="btn-login">Entrar</a>
+        <?php endif; ?>
+    </div>
 </header>
+
+<script>
+    // JS globals usados pelo front-end para lógica condicional
+    window.__USER_LOGGED = <?= (!empty($_SESSION['user']) ? 'true' : 'false') ?>;
+    window.__USER_NAME = <?= (!empty($_SESSION['user']) ? json_encode($_SESSION['user']['nome']) : 'null') ?>;
+</script>

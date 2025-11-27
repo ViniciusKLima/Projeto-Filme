@@ -1,4 +1,10 @@
 <?php
+/*
+    detalhesFilme.phtml
+    - Template que mostra informações detalhadas do filme selecionado.
+    - Recebe `$filme` e `$streaming` do controller.
+    - Contém iframe do trailer e blocos com metadados (diretor, atores, ano).
+*/
 $this->headTitle($filme['nome'] . ' - LocMovies');
 $this->headLink()->appendStylesheet($this->basePath('css/detalhesFilme.css'));
 ?>

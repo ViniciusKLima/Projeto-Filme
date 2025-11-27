@@ -1,0 +1,209 @@
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Seção 1: Sobre -->
+        <div class="footer-section">
+            <h4>Sobre LocMovies</h4>
+            <p>
+                Sua plataforma de descoberta e gerenciamento de filmes. Explore um vasto catálogo de produções cinematográficas,
+                organize seus favoritos e compartilhe suas opiniões sobre cinematic masterpieces.
+            </p>
+        </div>
+
+        <!-- Seção 2: Navegação -->
+        <div class="footer-section">
+            <h4>Navegação</h4>
+            <ul class="footer-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/?genero=acao">Ação</a></li>
+                <li><a href="/?genero=drama">Drama</a></li>
+                <li><a href="/?genero=ficcao">Ficção Científica</a></li>
+                <li><a href="/auth/login">Login</a></li>
+            </ul>
+        </div>
+
+        <!-- Seção 3: Recursos -->
+        <div class="footer-section">
+            <h4>Recursos</h4>
+            <ul class="footer-links">
+                <li><a href="/docs/guia-usuario">Guia do Usuário</a></li>
+                <li><a href="/docs/api">Documentação</a></li>
+                <li><a href="/docs/faq">FAQ</a></li>
+                <li><a href="/docs/contato">Contato</a></li>
+                <li><a href="/docs/privacidade">Privacidade</a></li>
+            </ul>
+        </div>
+
+        <!-- Seção 4: Redes Sociais -->
+        <div class="footer-section">
+            <h4>Siga-nos</h4>
+            <div class="social-links">
+                <a href="https://twitter.com/locmovies" class="social-icon" title="Twitter">
+                    <i>𝕏</i>
+                </a>
+                <a href="https://facebook.com/locmovies" class="social-icon" title="Facebook">
+                    <i>f</i>
+                </a>
+                <a href="https://instagram.com/locmovies" class="social-icon" title="Instagram">
+                    <i>📷</i>
+                </a>
+                <a href="https://youtube.com/locmovies" class="social-icon" title="YouTube">
+                    <i>▶</i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé Final -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <p>&copy; 2024 LocMovies. Todos os direitos reservados.</p>
+            <p class="footer-credit">
+                Desenvolvido com <span style="color: #ff6b6b;">♥</span> por LocMovies Inc.
+                | <a href="/docs/termos">Termos de Serviço</a>
+                | <a href="/docs/privacidade">Política de Privacidade</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background: linear-gradient(135deg, #0f1629 0%, #1a1f3a 100%);
+        color: #e0e0e0;
+        padding: 40px 20px;
+        margin-top: 60px;
+        border-top: 2px solid #264653;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-section h4 {
+        color: #ffd54f;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .footer-section p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #b0b0b0;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+
+    .footer-links a {
+        color: #b0b0b0;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease, padding-left 0.3s ease;
+        padding-left: 0;
+        display: block;
+    }
+
+    .footer-links a:hover {
+        color: #ffd54f;
+        padding-left: 5px;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 213, 79, 0.1);
+        color: #ffd54f;
+        text-decoration: none;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        border: 1px solid #ffd54f;
+    }
+
+    .social-icon:hover {
+        background: #ffd54f;
+        color: #0f1629;
+        transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+        border-top: 1px solid #264653;
+        padding-top: 30px;
+    }
+
+    .footer-bottom-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .footer-bottom-content p {
+        font-size: 13px;
+        color: #888;
+        margin: 8px 0;
+    }
+
+    .footer-bottom-content a {
+        color: #ffd54f;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-bottom-content a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .footer-credit {
+        margin-top: 15px;
+        font-size: 12px;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+        .footer-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .footer {
+            padding: 30px 15px;
+            margin-top: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 14px;
+        }
+
+        .footer-section p {
+            font-size: 13px;
+        }
+
+        .social-links {
+            justify-content: center;
+        }
+    }
+</style>

@@ -12,6 +12,12 @@ $this->headTitle('Login');
 
     <form id="loginForm" autocomplete="off" action="<?= $this->url('auth', ['action' => 'authenticate']) ?>" method="post">
 
+        <?php if (!empty($this->error)): ?>
+            <div class="form-error" style="color:#f8d7da;background:#5a1a1a;padding:10px;border-radius:4px;margin-bottom:12px;">
+                <?= $this->escapeHtml($this->error) ?>
+            </div>
+        <?php endif; ?>
+
         <div class="email">
             <label for="email" class="tt-email">Email</label>
             <input autocomplete="off" type="email" id="email" name="email" placeholder="Email" required>
@@ -42,4 +48,5 @@ $this->headTitle('Login');
         </p>
 
     </form>
+    <script src="<?= $this->basePath('/js/password-toggle.js') ?>"></script>
 </section>

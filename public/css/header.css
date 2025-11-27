@@ -1,0 +1,67 @@
+/* header.css
+ * Estilos para o cabeçalho da aplicação.
+ * - Layout: logo à esquerda, ações (entrar/sair) à direita
+ * - Variação para a home (`.header--home`): exibe subtítulo abaixo do logo
+ * - Variação para páginas de detalhe (`.header--detail`): exibe seta de retorno antes do logo
+ */
+
+header.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: transparent;
+  color: #fff;
+}
+
+header.app-header .brand {
+  text-align: start;
+  gap: 12px;
+}
+
+/* logo */
+header.app-header .logo {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #ffd54f;
+  text-decoration: none;
+}
+
+/* subtitle only on home */
+header.app-header.header--home .subtitle {
+  display: block;
+  font-size: 0.85rem;
+  color: #ddd;
+  margin-left: 6px;
+}
+header.app-header .subtitle {
+  display: none;
+}
+
+.back-arrow {
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-login {
+  background: #ffd54f;
+  color: #111;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.user-info .user-name {
+  color: #fff;
+  margin-right: 8px;
+  text-decoration: none;
+}

@@ -3,12 +3,19 @@ $this->headTitle('LocMovies - Catálogo de Filmes');
 $this->headLink()->appendStylesheet($this->basePath('/css/index.css'));
 ?>
 
+<!--
+    home/index.phtml
+    - Lista de filmes em grid. Cada card usa o atributo `data-href` para
+        navegação; o script `protect-filme.js` intercepta cliques e mostra modal
+        quando o usuário não estiver autenticado.
+-->
+
 <div class="container-catalogo">
-    <h2 class="titulo-secao">Destaques</h2>
+    <h2 class="titulo-secao">Disponíveis</h2>
     <div class="grid-filmes">
         <?php if (!empty($filmes)): ?>
-            <?php foreach ($filmes as $filme): ?>
-                <div class="card-filme" onclick="window.location.href='<?= $this->url('filme', ['action' => 'detalhes']) ?>?id=<?= $filme['id'] ?>'">
+                <?php foreach ($filmes as $filme): ?>
+                <div class="card-filme" data-href="<?= $this->url('filme', ['action' => 'detalhes']) ?>?id=<?= $filme['id'] ?>">
                     <img src="<?= $this->escapeHtmlAttr($filme['capaPrincipal']) ?>" alt="<?= $this->escapeHtml($filme['nome']) ?>" />
                     <div class="info-filme">
                         <h3><?= $this->escapeHtml($filme['nome']) ?></h3>
@@ -16,6 +23,8 @@ $this->headLink()->appendStylesheet($this->basePath('/css/index.css'));
                         <div class="nota-filme">⭐ <?= $this->escapeHtml($filme['nota']) ?></div>
                     </div>
                 </div>
+
+                    <script src="<?= $this->basePath('/js/protect-filme.js') ?>"></script>
             <?php endforeach; ?>
         <?php else: ?>
             <p>Nenhum filme cadastrado ainda.</p>

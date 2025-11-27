@@ -1,0 +1,96 @@
+﻿<?php
+/**
+ * View: painel de administração para gerenciar filmes
+ * Recebe: filmes (Filme[]), editing (Filme|null), error (string|null)
+ */
+?>
+<link rel="stylesheet" href="<?= $this->basePath('/css/adm.css') ?>">
+<div class="adm-container">
+    <header class="adm-header">
+        <h1>Painel de Administração</h1>
+        <p class="adm-sub">Gerenciar filmes (Banco de Dados)</p>
+    </header>
+    <?php if (!empty($this->error)): ?>
+        <div class="adm-alert adm-alert-error">
+            <?= $this->escapeHtml($this->error) ?>
+        </div>
+    <?php endif; ?>
+    <div class="adm-grid">
+        <section class="adm-form">
+            <h2><?= ($this->editing ? 'Editar Filme' : 'Adicionar Filme') ?></h2>
+            <form method="post" action="" novalidate>
+                <input type="hidden" name="action" value="<?= ($this->editing ? 'update' : 'add') ?>">
+                <?php if (!empty($this->editing) && !empty($this->editing->getId())): ?>
+                    <input type="hidden" name="id" value="<?= $this->escapeHtmlAttr($this->editing->getId()) ?>">
+                <?php endif; ?>
+                <label class="field">
+                    <span>Nome *</span>
+                    <input name="nome" type="text" required value="<?= $this->escapeHtmlAttr($this->editing ? $this->editing->getNome() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Diretor</span>
+                    <input name="diretor" type="text" value="<?= $this->escapeHtmlAttr($this->editing ? $this->editing->getDiretor() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Elenco</span>
+                    <input name="atoresPrincipais" type="text" value="<?= $this->escapeHtmlAttr($this->editing ? $this->editing->getElenco() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Streaming</span>
+                    <input name="streaming" type="text" value="<?= $this->escapeHtmlAttr($this->editing ? $this->editing->getStreaming() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Ano</span>
+                    <input name="ano" type="number" value="<?= $this->escapeHtmlAttr($this->editing ? (string)$this->editing->getAnoLancamento() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Capa Principal</span>
+                    <input name="capaPrincipal" type="url" value="<?= $this->escapeHtmlAttr($this->editing ? $this->editing->getCapaPrincipal() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Capa Fundo</span>
+                    <input name="capaFundo" type="url" value="<?= $this->escapeHtmlAttr($this->editing ? $this->editing->getCapaFundo() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Trailer</span>
+                    <input name="trailer" type="url" value="<?= $this->escapeHtmlAttr($this->editing ? $this->editing->getTrailer() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Gênero</span>
+                    <input name="genero" type="text" value="<?= $this->escapeHtmlAttr($this->editing ? $this->editing->getGenero() : '') ?>">
+                </label>
+                <label class="field">
+                    <span>Nota</span>
+                    <input name="nota" type="number" step="0.1" min="0" max="5" value="<?= $this->escapeHtmlAttr($this->editing ? (string)$this->editing->getNota() : '') ?>">
+                </label>
+                <label class="field field-textarea">
+                    <span>Sinopse</span>
+                    <textarea name="sinopse" rows="5"><?= $this->escapeHtml($this->editing ? $this->editing->getSinopse() : '') ?></textarea>
+                </label>
+                <div class="form-actions">
+                    <button type="submit" class="btn-save"><?= ($this->editing ? 'Atualizar' : 'Adicionar') ?></button>
+                    <?php if (!empty($this->editing)): ?>
+                        <a class="btn-cancel" href="?">Cancelar</a>
+                    <?php endif; ?>
+                </div>
+            </form>
+        </section>
+        <section class="adm-list">
+            <h2>Filmes (<?= count($this->filmes) ?>)</h2>
+            <ul class="filmes-list">
+                <?php foreach ($this->filmes as $f): ?>
+                    <li class="filme-item">
+                        <div class="filme-meta">
+                            <strong><?= $this->escapeHtml($f->getNome()) ?></strong>
+                            <div><?= $this->escapeHtml($f->getDiretor()) ?> - <?= $f->getAnoLancamento() ?></div>
+                        </div>
+                        <div class="filme-actions">
+                            <a class="btn-edit" href="?edit=<?= $f->getId() ?>">Editar</a>
+                            <a class="btn-delete" href="?delete=<?= $f->getId() ?>" onclick="return confirm('Remover?');">Remover</a>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+    </div>
+</div>

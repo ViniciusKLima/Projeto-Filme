@@ -1,0 +1,67 @@
+[
+  {
+    "nome": "Inception",
+    "sinopse": "Um ladrão que especialista em invadir sonhos de pessoas é contratado para fazer o oposto - plantar uma ideia ao invés de roubar uma.",
+    "capaPrincipal": "https://image.tmdb.org/t/p/w500/h2PwWBHg91qlf0sF17Y99e6LoXj.jpg",
+    "capaFundo": "https://image.tmdb.org/t/p/original/s3TBrC6TOuflies79_V5utf8CE.jpg",
+    "anoLancamento": 2010,
+    "diretor": "Christopher Nolan",
+    "elenco": "Leonardo DiCaprio, Marion Cotillard, Ellen Page",
+    "genero": "Ficção Científica, Ação, Suspense",
+    "nota": 8.8,
+    "trailer": "https://www.youtube.com/watch?v=YoHD_XwrzKc",
+    "streaming": "Netflix"
+  },
+  {
+    "nome": "The Dark Knight",
+    "sinopse": "Quando a ameaça conhecida como Coringa emerge de seu passado misterioso, ele causa caos nos cidadãos de Gotham.",
+    "capaPrincipal": "https://image.tmdb.org/t/p/w500/1hqwGsucT4i1Dv9nMYLty9ZxUbl.jpg",
+    "capaFundo": "https://image.tmdb.org/t/p/original/l25UXT0eI6P4kYQnRnr5Kmoa0ZT.jpg",
+    "anoLancamento": 2008,
+    "diretor": "Christopher Nolan",
+    "elenco": "Christian Bale, Heath Ledger, Aaron Eckhart",
+    "genero": "Ação, Crime, Drama",
+    "nota": 9.0,
+    "trailer": "https://www.youtube.com/watch?v=EXeTwQWrcwY",
+    "streaming": "Max"
+  },
+  {
+    "nome": "Interestelar",
+    "sinopse": "Um grupo de astronautas viaja através de um buraco de minhoca próximo a Saturno na esperança de encontrar um novo planeta habitável para a humanidade.",
+    "capaPrincipal": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCu244myL87d.jpg",
+    "capaFundo": "https://image.tmdb.org/t/p/original/xu9zaAevzQ4OMf0zIcyR0xn0c5x.jpg",
+    "anoLancamento": 2014,
+    "diretor": "Christopher Nolan",
+    "elenco": "Matthew McConaughey, Anne Hathaway, Jessica Chastain",
+    "genero": "Ficção Científica, Drama, Aventura",
+    "nota": 8.6,
+    "trailer": "https://www.youtube.com/watch?v=zSID6PrBn0s",
+    "streaming": "Max"
+  },
+  {
+    "nome": "Pulp Fiction",
+    "sinopse": "As vidas de vários mafiosos, uma boxeadora, esposa de um gângster, e um par de atiradores de bolso se entrelaçam em quatro contos de violência e redenção.",
+    "capaPrincipal": "https://image.tmdb.org/t/p/w500/dM2w4PZqPHG2ZiYW3UsmwlSmRlD.jpg",
+    "capaFundo": "https://image.tmdb.org/t/p/original/7b8UIbEy91a9FwXyJAIlnNyrQSG.jpg",
+    "anoLancamento": 1994,
+    "diretor": "Quentin Tarantino",
+    "elenco": "John Travolta, Uma Thurman, Samuel L. Jackson",
+    "genero": "Crime, Drama",
+    "nota": 8.9,
+    "trailer": "https://www.youtube.com/watch?v=s7EdQ4FqSTM",
+    "streaming": "Netflix"
+  },
+  {
+    "nome": "Matrix",
+    "sinopse": "Um hacker do computador aprende dos misteriosos rebeldes sobre a verdadeira natureza de sua realidade e seu papel no conflito de alto-risco.",
+    "capaPrincipal": "https://image.tmdb.org/t/p/w500/fw02ONlDhrYM1ptasUkxYKuHeJ2.jpg",
+    "capaFundo": "https://image.tmdb.org/t/p/original/s7qJW7RPgwxCWUwKr1KPJ7Jht3x.jpg",
+    "anoLancamento": 1999,
+    "diretor": "Lana Wachowski, Lilly Wachowski",
+    "elenco": "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss",
+    "genero": "Ficção Científica, Ação",
+    "nota": 8.7,
+    "trailer": "https://www.youtube.com/watch?v=vKQi3bBA1y8",
+    "streaming": "Max"
+  }
+]

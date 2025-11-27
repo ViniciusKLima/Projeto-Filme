@@ -9,6 +9,21 @@ use Application\Entity\User;
 
 class AuthController extends AbstractActionController
 {
+    /**
+     * AuthController
+     *
+     * Responsável por rotas e ações relacionadas à autenticação de usuários:
+     * - mostrar telas de login/cadastro
+     * - processar cadastro (registerAction)
+     * - autenticar login (authenticateAction)
+     * - destruir sessão (logoutAction)
+     *
+     * Notas de implementação:
+     * - O EntityManager é carregado preguiçosamente via ServiceManager em getEntityManager().
+     * - Ao autenticar/criar conta salvamos informações úteis em `$_SESSION['user']`.
+     * - Implementamos um token `remember_me` para persistência (cookie) e
+     *   mecanismos para limpar/invalidate esse token no logout.
+     */
     private $entityManager;
 
     // Aceita EntityManager opcionalmente, mas preferimos carregar preguiçosamente
@@ -109,6 +124,8 @@ class AuthController extends AbstractActionController
     public function authenticateAction()
     {
         $request = $this->getRequest();
+        $lifetime = 30 * 24 * 3600; // 30 dias
+
 
         if (!$request->isPost()) {
             return $this->redirect()->toRoute('auth', ['action' => 'login']);
@@ -129,19 +146,43 @@ class AuthController extends AbstractActionController
         $repo = $this->getEntityManager()->getRepository(User::class);
         $usuario = $repo->findOneBy(['email' => $email]);
 
-        if (!$usuario || !password_verify($senha, $usuario->getSenha())) {
+        if (!$usuario) {
             $vm = new ViewModel([
-                'error' => 'Email ou senha incorretos.'
+                'error' => 'Não existe nenhuma conta com esse email.'
             ]);
             $vm->setTerminal(true);
             $vm->setTemplate('application/login/login');
             return $vm;
         }
 
-        // ========== Salvar sessão ==========
+        if (!password_verify($senha, $usuario->getSenha())) {
+            $vm = new ViewModel([
+                'error' => 'Senha incorreta.'
+            ]);
+            $vm->setTerminal(true);
+            $vm->setTemplate('application/login/login');
+            return $vm;
+        }
+
+        // ========== Iniciar sessão primeiro ==========
         if (session_status() === PHP_SESSION_NONE) {
+            // Configurar sessão ANTES de iniciar
+            $lifetime = 30 * 24 * 3600; // 30 dias
+            if (PHP_VERSION_ID >= 70300) {
+                session_set_cookie_params([
+                    'lifetime' => $lifetime,
+                    'path' => '/',
+                    'secure' => false,
+                    'httponly' => true,
+                    'samesite' => 'Lax',
+                ]);
+            } else {
+                session_set_cookie_params($lifetime, '/');
+            }
             session_start();
         }
+
+        // ========== Salvar sessão com persistência (30 dias) =========="
 
         $_SESSION['user'] = [
             'id'    => $usuario->getId(),
@@ -150,9 +191,24 @@ class AuthController extends AbstractActionController
             'tipo'  => $usuario->getTipoConta()
         ];
 
+        // atualizar cookie de sessão para expirar junto com a persistência
+        if (!headers_sent()) {
+            if (PHP_VERSION_ID >= 70300) {
+                setcookie(session_name(), session_id(), [
+                    'expires' => time() + $lifetime,
+                    'path' => '/',
+                    'secure' => false,
+                    'httponly' => true,
+                    'samesite' => 'Lax',
+                ]);
+            } else {
+                setcookie(session_name(), session_id(), time() + $lifetime, '/');
+            }
+        }
+
         // redireciona admin
         if ($usuario->getTipoConta() === 'admin') {
-            return $this->redirect()->toRoute('admin', ['action' => 'painel']);
+            return $this->redirect()->toRoute('filmes');
         }
 
         // gerar token de remember-me e setar cookie persistente (30 dias)
@@ -162,7 +218,27 @@ class AuthController extends AbstractActionController
             $em = $this->getEntityManager();
             $em->persist($usuario);
             $em->flush();
-            setcookie('remember_me', $token, time() + 30 * 24 * 3600, '/');
+            // set cookie with options for broader compatibility
+            if (PHP_VERSION_ID >= 70300) {
+                setcookie('remember_me', $token, [
+                    'expires' => time() + 30 * 24 * 3600,
+                    'path' => '/',
+                    'secure' => false,
+                    'httponly' => true,
+                    'samesite' => 'Lax',
+                ]);
+                // also send header fallback for environments/browsers that need explicit header
+                if (!headers_sent()) {
+                    $expires = gmdate('D, d-M-Y H:i:s T', time() + 30 * 24 * 3600);
+                    header("Set-Cookie: remember_me={$token}; Expires={$expires}; Path=/; HttpOnly; SameSite=Lax");
+                }
+            } else {
+                setcookie('remember_me', $token, time() + 30 * 24 * 3600, '/');
+                if (!headers_sent()) {
+                    $expires = gmdate('D, d-M-Y H:i:s T', time() + 30 * 24 * 3600);
+                    header("Set-Cookie: remember_me={$token}; Expires={$expires}; Path=/; HttpOnly; SameSite=Lax");
+                }
+            }
         } catch (\Throwable $e) {
             // ignora falha em gerar token
         }

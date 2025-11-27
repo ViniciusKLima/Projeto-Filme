@@ -1,0 +1,148 @@
+/* adm.css - estilos atualizados e responsivos para painel admin */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, #102033 0%, #16304a 100%);
+  color: #f4f7fa;
+}
+.adm-container {
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 20px;
+}
+.adm-header {
+  margin-bottom: 18px;
+  color: #fff;
+}
+.adm-header h1 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+.adm-sub {
+  color: #cbd8e6;
+  font-size: 0.95rem;
+}
+.adm-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 20px;
+}
+.adm-form {
+  background: #0f2233;
+  padding: 18px;
+  border-radius: 10px;
+  color: #e6eef8;
+}
+.adm-form h2 {
+  margin: 0 0 12px;
+  color: #ffd54f;
+}
+.field {
+  display: block;
+  margin-bottom: 10px;
+}
+.field span {
+  display: block;
+  font-size: 0.85rem;
+  color: #c6d7e6;
+  margin-bottom: 6px;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+}
+.field-textarea textarea {
+  min-height: 110px;
+}
+.form-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.btn-save {
+  background: #ffd54f;
+  color: #08131a;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.btn-cancel {
+  display: inline-block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #dbeaf6;
+  text-decoration: none;
+}
+.adm-list {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 18px;
+  border-radius: 10px;
+  color: #e6eef8;
+}
+.filmes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.filme-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+}
+.filme-title {
+  font-weight: 700;
+  color: #fff;
+}
+.filme-info {
+  font-size: 0.9rem;
+  color: #cbd8e6;
+}
+.filme-actions a {
+  margin-left: 8px;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: #fff;
+  background: transparent;
+}
+.filme-actions a.btn-delete {
+  background: #e2564b;
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+@media (max-width: 900px) {
+  .adm-grid {
+    grid-template-columns: 1fr;
+  }
+  .adm-form {
+    order: 2;
+  }
+  .adm-list {
+    order: 1;
+    margin-bottom: 14px;
+  }
+}
